@@ -5,13 +5,14 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     strict: true,
-    state: {
-        products: [
-            {name: 'Banana Skin', price: 20},
-            {name: 'Shiny Star', price: 40},
-            {name: 'Green Shells', price: 60},
-            {name: 'Red Shells', price: 80}
-          ]
+    // good idea to use actions for debugging purposes
+    // actions: context => {
+    actions: {
+        reducePrice: function(context, payload) {
+            setTimeout(function() {
+                context.commit('reducePrice', payload);
+            }, 2000)
+        }
     },
     getters: {
         // saleProducts: state => {
@@ -27,10 +28,20 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        reducePrice: function(state) {
+        reducePrice: function(state, payload) {
+            // setTimeout(function() {
             state.products.forEach(function(product) {
-                product.price -= 1;
+                product.price -= payload;
             });
+            // }, 3000)
         }
+    },
+    state: {
+        products: [
+            {name: 'Banana Skin', price: 20},
+            {name: 'Shiny Star', price: 40},
+            {name: 'Green Shells', price: 60},
+            {name: 'Red Shells', price: 80}
+          ]
     }
 });
