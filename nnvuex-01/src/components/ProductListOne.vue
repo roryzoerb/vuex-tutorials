@@ -11,25 +11,34 @@
   </div>
 </template>
 
- <script>
- export default {
-     computed: {
-         products() {
-             return this.$store.state.products;
-         },
-         saleProducts() {
-             return this.$store.getters.saleProducts;
-         }
-     },
-     methods: {
-         reducePrice: function(amount) {
-            this.$store.dispatch('reducePrice', amount);
-         }
-     }
-}
- </script>
+<script>
+import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
- <style scoped>
+export default {
+    computed: {
+        ...mapGetters([
+            'saleProducts'
+        ]),
+        products() {
+            return this.$store.state.products;
+        },
+        // saleProducts() {
+        //     return this.$store.getters.saleProducts;
+        // },
+    },
+    methods: {
+        // reducePrice: function(amount) {
+        // this.$store.dispatch('reducePrice', amount);
+        // }
+        ...mapActions([
+            'reducePrice'
+        ])
+    }
+}
+</script>
+
+<style scoped>
  #product-list-one{
     background: #FFF8B1;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
@@ -50,4 +59,4 @@
     font-weight: bold;
     color: #E8800C;
 }
- </style>
+</style>
