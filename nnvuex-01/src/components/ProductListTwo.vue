@@ -1,27 +1,27 @@
 <template>
-  <div id='product-list-two'>
-    <h2>Product List Two</h2>
-    <ul>
-        <li v-for='product in products'>
-            <span class='name'>{{ product.name }}</span>
-            <span class='price'>${{ product.price }}</span>
-        </li>
-    </ul>
-  </div>
+    <div id="product-list-two">
+        <h2>Product List Two</h2>
+        <ul>
+            <li v-for="product in products">
+                <span class="name">{{ product.name }}</span>
+                <span class="price">£{{ product.price }}</span>
+            </li>
+        </ul>
+    </div>
 </template>
- <script>
- export default {
-    props: ['products'],
-    data() {
-       return {
 
-       }
+<script>
+export default {
+    computed: {
+        products(){
+            return this.$store.state.products
+        }
     }
- }
- </script>
+}
+</script>
 
- <style scoped>
- #product-list-two{
+<style scoped>
+#product-list-two{
     background: #D1E4FF;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
     margin-bottom: 30px;
@@ -42,6 +42,6 @@
     color: #860CE8;
     display: block;
 }
- </style>
+</style>
  
  
