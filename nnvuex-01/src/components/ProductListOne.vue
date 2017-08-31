@@ -7,6 +7,7 @@
             <span class='price'>${{ product.price }}</span>
         </li>
     </ul>
+    <button v-on:click='reducePrice'>Reduce Price</button>
   </div>
 </template>
 
@@ -18,6 +19,14 @@
          },
          saleProducts() {
              return this.$store.getters.saleProducts;
+         }
+     },
+     methods: {
+         reducePrice: function() {
+            //  this.$store.state.products.forEach(function(product) {
+            //      product.price -= 1;
+            //  });
+            this.$store.commit('reducePrice');
          }
      }
 }
